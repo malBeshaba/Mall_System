@@ -33,4 +33,9 @@ public class InsertData extends DBManager implements Insert {
         }
         return false;
     }
+
+    @Override
+    public boolean insert(Object map) throws SQLException {
+        return false;
+    }
 }

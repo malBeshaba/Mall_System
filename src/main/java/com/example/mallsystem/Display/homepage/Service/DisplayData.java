@@ -1,7 +1,7 @@
 package com.example.mallsystem.Display.homepage.Service;
 
-import com.example.mallsystem.Display.goods.DAO.GoodsDBManager;
-import com.example.mallsystem.Display.news.DAO.NewsDBManager;
+import com.example.mallsystem.Display.goods.Service.GoodsDBManager;
+import com.example.mallsystem.Display.news.Service.NewsDBManager;
 import com.example.mallsystem.Public.Json.BaseJSON;
 import com.example.mallsystem.Public.Json.ToJson;
 import com.google.gson.Gson;

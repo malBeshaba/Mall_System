@@ -1,4 +1,4 @@
-package com.example.mallsystem.Display.news.DAO;
+package com.example.mallsystem.Display.news.Service;
 
 import com.example.mallsystem.Display.goods.DAO.SelectExtension;
 import com.example.mallsystem.Public.Database.DBManager;
@@ -36,6 +36,11 @@ public class NewsDBManager extends DBManager implements Insert, Select, Update, 
         } finally {
             this.close(null, stat, conn);
         }
+        return false;
+    }
+
+    @Override
+    public boolean insert(Object map) throws SQLException {
         return false;
     }
 

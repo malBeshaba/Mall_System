@@ -1,6 +1,6 @@
 package com.example.mallsystem.Display.goods.Controller;
 
-import com.example.mallsystem.Display.goods.DAO.GoodsDBManager;
+import com.example.mallsystem.Display.goods.Service.GoodsDBManager;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

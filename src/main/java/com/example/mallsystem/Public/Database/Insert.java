@@ -5,4 +5,5 @@ import java.util.Map;
 
 public interface Insert {
     public boolean insert(Map<String, Object> map) throws SQLException;
+    public boolean insert(Object map) throws SQLException;
 }

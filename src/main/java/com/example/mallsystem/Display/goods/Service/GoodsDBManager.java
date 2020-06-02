@@ -1,14 +1,19 @@
-package com.example.mallsystem.Display.goods.DAO;
+package com.example.mallsystem.Display.goods.Service;
 
+import com.example.mallsystem.Display.goods.DAO.Goods;
+import com.example.mallsystem.Display.goods.DAO.SelectExtension;
 import com.example.mallsystem.Public.Database.DBManager;
 import com.example.mallsystem.Public.Database.Insert;
 import com.example.mallsystem.Public.Database.Select;
 import com.example.mallsystem.Public.URL.URLStorage;
+import lombok.Cleanup;
+import org.springframework.context.annotation.Configuration;
 
 import java.io.*;
 import java.sql.*;
 import java.util.*;
 
+@Configuration
 public class GoodsDBManager extends DBManager implements Select, Insert, SelectExtension {
 
 
@@ -35,6 +40,37 @@ public class GoodsDBManager extends DBManager implements Select, Insert, SelectE
             e.printStackTrace();
         }
         return list;
+    }
+
+    public Goods selectDetail(int id) {
+        @Cleanup
+        Connection conn = null;
+        @Cleanup
+        PreparedStatement stat = null;
+        @Cleanup
+        ResultSet rs = null;
+        Goods goods = null;
+        String sql = "select * from Goods where id=?";
+        try {
+            conn = this.connect();
+            stat = conn.prepareStatement(sql);
+            stat.setInt(1, id);
+            rs = stat.executeQuery();
+            goods = new Goods();
+            while (rs.next()) {
+                goods.setId(rs.getInt("id"));
+                goods.setName(rs.getString("name"));
+                goods.setBusiness(rs.getString("bussiness"));
+                goods.setDetail(rs.getString("detail"));
+                goods.setPrice(rs.getDouble("price"));
+                goods.setVolume(rs.getInt("volume"));
+                StringBuffer url =  new StringBuffer(URLStorage.baseURL + "/goods/image?goods_id="+id);
+                goods.setImageUrl(url.toString());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return goods;
     }
 
     @Override
@@ -84,6 +120,11 @@ public class GoodsDBManager extends DBManager implements Select, Insert, SelectE
         } finally {
             this.close(rs, stmt, conn);
         }
+        return false;
+    }
+
+    @Override
+    public boolean insert(Object map) throws SQLException {
         return false;
     }
 
