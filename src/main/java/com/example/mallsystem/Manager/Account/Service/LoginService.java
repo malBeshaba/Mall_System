@@ -1,13 +1,11 @@
 package com.example.mallsystem.Manager.Account.Service;
 
 import com.example.mallsystem.Manager.Account.DAO.User;
-import com.example.mallsystem.Manager.Account.DAO.UserDBManager;
 import com.example.mallsystem.Public.Json.BaseJSON;
 import com.example.mallsystem.Public.Json.ToJson;
 import com.example.mallsystem.Public.Token.JwtToken;
 import com.google.gson.Gson;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.LinkedHashMap;
 

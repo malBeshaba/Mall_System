@@ -30,7 +30,7 @@ public class SearchDBManager extends DBManager {
         try {
             conn = this.connect();
             stat = conn.prepareStatement(sql1);
-            stat.setString(1, "'%" + param + "%'");
+            stat.setString(1, "%" + param + "%");
             rs = stat.executeQuery();
             arrayList = new ArrayList<>();
             while (rs.next()) {
@@ -53,11 +53,11 @@ public class SearchDBManager extends DBManager {
         PreparedStatement stat = null;
         ResultSet rs = null;
         ArrayList<LinkedHashMap<String, Object>> arrayList = null;
-        String sql1 = "select id as news_id, name as news_name from News where name like ?;\"";
+        String sql1 = "select id as news_id, name as news_name from News where name like ?";
         try {
             conn = this.connect();
             stat = conn.prepareStatement(sql1);
-            stat.setString(1, "'%" + param + "%'");
+            stat.setString(1, "%" + param + "%");
             rs = stat.executeQuery();
             arrayList = new ArrayList<>();
             while (rs.next()) {

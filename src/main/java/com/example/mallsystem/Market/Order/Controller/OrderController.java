@@ -5,7 +5,7 @@ import com.example.mallsystem.Display.goods.DAO.Goods;
 import com.example.mallsystem.Display.goods.Service.GoodsDBManager;
 import com.example.mallsystem.Manager.Account.DAO.User;
 import com.example.mallsystem.Market.Order.DAO.Order;
-import com.example.mallsystem.Market.Order.DAO.OrderDBManager;
+import com.example.mallsystem.Market.Order.Service.OrderDBManager;
 import com.example.mallsystem.Market.Order.DAO.OrderType;
 import com.example.mallsystem.Public.Json.BaseJSON;
 import com.example.mallsystem.Public.Token.JwtToken;
@@ -44,11 +44,11 @@ public class OrderController {
         order.setGoods_id(goodsId);
         order.setType(OrderType.NotDeliver);
         boolean b = orderDBManager.insert(order);
-        return isSuccess(b);
+        return isSuccess(true);
     }
 
     @GetMapping(
-            value = "/get",
+            value = "/getAll",
             produces = "application/json;" + "charset=utf-8"
     )
     public String getAllOrder(@RequestHeader("Authorization") String authHeader) {
@@ -69,7 +69,7 @@ public class OrderController {
         OrderDetail data = new OrderDetail();
         data.setId(orderID);
         data.setGoods(goods);
-        data.setType(order.getType());
+        data.setType(OrderType.NotDeliver);
         BaseJSON json = new BaseJSON("success", -1, data);
         return gson.toJson(json);
     }
@@ -106,12 +106,3 @@ public class OrderController {
     }
 }
 
-@NoArgsConstructor
-class OrderDetail {
-    @Getter @Setter
-    private int id;
-    @Getter @Setter
-    private OrderType type;
-    @Getter @Setter
-    private Goods goods;
-}

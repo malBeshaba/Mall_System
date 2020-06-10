@@ -4,7 +4,7 @@ import com.example.mallsystem.Display.Point.DAO.Point;
 import com.example.mallsystem.Display.Point.Service.PointDBManager;
 import com.example.mallsystem.Display.ShoppingCart.Controller.CartController;
 import com.example.mallsystem.Manager.Account.DAO.User;
-import com.example.mallsystem.Manager.Account.DAO.UserDBManager;
+import com.example.mallsystem.Manager.Account.Service.UserDBManager;
 import com.example.mallsystem.Manager.Account.Service.LoginService;
 import com.example.mallsystem.Public.Json.BaseJSON;
 import com.example.mallsystem.Public.Token.JwtToken;

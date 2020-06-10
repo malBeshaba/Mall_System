@@ -43,11 +43,8 @@ public class GoodsDBManager extends DBManager implements Select, Insert, SelectE
     }
 
     public Goods selectDetail(int id) {
-        @Cleanup
         Connection conn = null;
-        @Cleanup
         PreparedStatement stat = null;
-        @Cleanup
         ResultSet rs = null;
         Goods goods = null;
         String sql = "select * from Goods where id=?";
@@ -67,6 +64,8 @@ public class GoodsDBManager extends DBManager implements Select, Insert, SelectE
                 StringBuffer url =  new StringBuffer(URLStorage.baseURL + "/goods/image?goods_id="+id);
                 goods.setImageUrl(url.toString());
             }
+            this.close(rs, stat, conn);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

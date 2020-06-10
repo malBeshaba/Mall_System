@@ -11,11 +11,8 @@ import java.util.Calendar;
 public class CountManager extends DBManager {
 
     public int getDailySales(int goods_id) {
-        @Cleanup
         Connection conn = null;
-        @Cleanup
         PreparedStatement stat = null;
-        @Cleanup
         ResultSet rs = null;
         String sql = "select count(*) from Order where createTime=?";
         int result = 0;
@@ -27,6 +24,7 @@ public class CountManager extends DBManager {
             while (rs.next()) {
                 result = rs.getInt("count");
             }
+            this.close(rs, stat, conn);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -34,11 +32,8 @@ public class CountManager extends DBManager {
     }
 
     public int getMonthlySales(int goods_id) {
-        @Cleanup
         Connection conn = null;
-        @Cleanup
         PreparedStatement stat = null;
-        @Cleanup
         ResultSet rs = null;
         String sql = "select count(*) from Order where createTime between ? and ?";
         int result = 0;
@@ -51,6 +46,7 @@ public class CountManager extends DBManager {
             while (rs.next()) {
                 result = rs.getInt("count");
             }
+            this.close(rs, stat, conn);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,11 +54,8 @@ public class CountManager extends DBManager {
     }
 
     public int getAnnualSales(int goods_id) {
-        @Cleanup
         Connection conn = null;
-        @Cleanup
         PreparedStatement stat = null;
-        @Cleanup
         ResultSet rs = null;
         String sql = "select count(*) from Order where createTime between ? and ?";
         int result = 0;
@@ -75,6 +68,7 @@ public class CountManager extends DBManager {
             while (rs.next()) {
                 result = rs.getInt("count");
             }
+            this.close(rs, stat, conn);
         } catch (SQLException e) {
             e.printStackTrace();
         }

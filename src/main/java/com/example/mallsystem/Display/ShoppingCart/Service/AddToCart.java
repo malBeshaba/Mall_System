@@ -3,13 +3,14 @@ package com.example.mallsystem.Display.ShoppingCart.Service;
 import com.example.mallsystem.Display.ShoppingCart.DAO.ShoppingCart;
 import com.example.mallsystem.Display.ShoppingCart.DAO.ShoppingCartDBManager;
 import com.example.mallsystem.Public.Json.BaseJSON;
+import com.example.mallsystem.Public.Json.ToJson;
 import com.google.gson.Gson;
 import lombok.Getter;
 
 import java.sql.SQLException;
 
 
-public class AddToCart {
+public class AddToCart implements ToJson {
     @Getter
     private BaseJSON json;
 

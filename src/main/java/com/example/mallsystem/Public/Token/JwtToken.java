@@ -64,8 +64,8 @@ public class JwtToken {
         if (StringUtils.isEmpty(token)) {
             return null;
         }
-        String[] header = token.split(" ");
-        token = header[1];
+//        String[] header = token.split(" ");
+//        token = header[1];
         try {
             return Jwts.parserBuilder()
                     .setSigningKey(getSecretKey())

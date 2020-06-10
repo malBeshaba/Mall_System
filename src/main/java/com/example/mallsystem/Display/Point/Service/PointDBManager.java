@@ -10,9 +10,7 @@ import java.sql.*;
 @Configuration
 public class PointDBManager extends DBManager {
     public boolean update(Point point) {
-        @Cleanup
         Connection conn = null;
-        @Cleanup
         PreparedStatement stat = null;
         String sql = "update Point set point=? where user_id=?";
         try {
@@ -22,6 +20,8 @@ public class PointDBManager extends DBManager {
             stat.setInt(2, point.getUser_id());
             int result = stat.executeUpdate();
             System.out.println("success: update Point. line:"+result);
+            this.close(null, stat, conn);
+
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,9 +30,7 @@ public class PointDBManager extends DBManager {
     }
 
     public boolean insert(Point point) {
-        @Cleanup
         Connection conn = null;
-        @Cleanup
         PreparedStatement stat = null;
         String sql = "insert into Point(user_id,point) values (?,?)";
         try {
@@ -42,6 +40,8 @@ public class PointDBManager extends DBManager {
             stat.setInt(2, point.getPoint());
             int result = stat.executeUpdate();
             System.out.println("success: insert into Point. line:"+result);
+            this.close(null, stat, conn);
+
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,11 +50,8 @@ public class PointDBManager extends DBManager {
     }
 
     public Point selectPoint(int userId) {
-        @Cleanup
         Connection conn = null;
-        @Cleanup
         PreparedStatement stat = null;
-        @Cleanup
         ResultSet rs = null;
         String sql = "select * from Point where user_id=?";
         Point point = null;
@@ -70,6 +67,8 @@ public class PointDBManager extends DBManager {
                 point.setPoint(rs.getInt("point"));
             }
             System.out.println("success: insert into Point.");
+            this.close(rs, stat, conn);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
